@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input, computed } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -6,12 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string;ˇ
+  avatar = input.required<string>();
+  name = input.required<string>();
 
-  get imagePath() {
-    return '/users/' + this.avatar;
-  }
+  imagePath = computed(() => '/users/' + this.avatar());
+  // get imagePath() {
+  //   return '/users/' + this.avatar;
+  // }
 
   onSelectUser() {}
 }
